@@ -18,8 +18,9 @@ public class TicTacToeGame {
 		ticTacToeGame.createBoard();
 		ticTacToeGame.selectLetter();
 		ticTacToeGame.displayChoice();
-//		ticTacToeGame.displayBoard();
+		ticTacToeGame.displayBoard();
 		ticTacToeGame.userMove();
+		ticTacToeGame.displayBoard();
 	}
 
 	/**
@@ -40,13 +41,15 @@ public class TicTacToeGame {
 			System.out.println("Choose your letter.I.e X or O");
 			Scanner r = new Scanner(System.in);
 			player1 = r.nextLine().charAt(0);
-			r.close();
+		
 			if (Character.compare(player1, 'O') == 0) {
 
-				player2 = 'O';
+				player2 = 'X';
+				
 				return;
 			} else if (Character.compare(player1, 'X') == 0) {
-				player2 = 'X';
+				player2 = 'O';
+				
 				return;
 			} else {
 				System.out.println("Invalid input");
@@ -92,12 +95,12 @@ public class TicTacToeGame {
 	public void userMove() {
 		
 		int index;
-
+		Scanner scanner = new Scanner(System.in);
 		while(true)
 		{
 			System.out.println("Enter the index between 1 to 9 to which you wanna move");
-			Scanner r = new Scanner(System.in);
-			index = r.nextInt();
+			
+			index = scanner.nextInt();
 			if(index > 9 || index < 0) {
 				System.out.println("Invalid index, Choose index between 1 to 9");
 				continue;
@@ -105,13 +108,14 @@ public class TicTacToeGame {
 			
 			if( Character.toString(board[index]).equals(' ') ) {
 				
-				System.out.println("Index is free and you can make move");
+				System.out.println("Index is free and you have made the move");
+				board[index] = player1;
 			
 			}
 			else {
 				System.out.println("Index is full and you cannot make move to that index");
 			}
-			r.close();
+			scanner.close();
 			return;
 		}
 		
