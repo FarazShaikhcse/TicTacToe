@@ -18,6 +18,7 @@ public class TicTacToeGame {
 		ticTacToeGame.createBoard();
 		ticTacToeGame.selectLetter();
 		ticTacToeGame.displayChoice();
+		ticTacToeGame.displayBoard();
 	}
 	/**
 	 * This method creates the board by initialising all the boxes to empty space
@@ -37,6 +38,7 @@ public class TicTacToeGame {
 		System.out.println("Choose your letter.I.e X or O");
 		Scanner r = new Scanner(System.in);
 		player1 = r.nextLine().charAt(0);
+		r.close();
 		if (Character.compare(player1,'O') == 0) {
 			
 			player2 = 'O';
@@ -53,9 +55,35 @@ public class TicTacToeGame {
 		}
 		
 	}
+	/**
+	 * this method displays user's letter choice
+	 */
 	public void displayChoice() {
 		System.out.println("Player 1 chose " + player1);
 		System.out.println("Player 2's Letter will be " + player2);
 	}
+	
+	/**
+	 * this method displays the board where the game will be played
+	 */
+	public void displayBoard() {
+		int count = 1;
+		while (count !=10) {
+			for (int i = 1; i <= 3; i++) {
+				System.out.print(board[count]);
+				if (i % 3 == 0) {
+					count++;
+					System.out.println();
+					break;
+				}
+				count++;
+				System.out.print("  |  ");
+			}
+			if(count==10) {
+				break;
+			}
+			System.out.println("------------");
+			}
+		}
 	
 }
