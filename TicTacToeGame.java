@@ -19,9 +19,8 @@ public class TicTacToeGame {
 		TicTacToeGame ticTacToeGame = new TicTacToeGame();
 		ticTacToeGame.createBoard();
 		ticTacToeGame.selectLetter();
-		ticTacToeGame.displayBoard();
 		ticTacToeGame.toss();
-		ticTacToeGame.displayWinner();
+		
 	}
 
 	/**
@@ -202,21 +201,21 @@ public class TicTacToeGame {
         if(win == playerLetter)
         {
         	System.out.println("You have won the game");
-        	System.exit(0);
+        	newGame();
         }
         else if(win == computerLetter)
         {
         		System.out.println("Computer has won the game");
-        		System.exit(0);
+        		newGame();
         }
         else if(win == 'd')
         {
         	System.out.println("Game has been tie");
-        	System.exit(0);
+        	newGame();
         }
         else
         {
-        	if (!usersTurn) {
+        	if (usersTurn==false) {
         		userMove();
             }
             else {
@@ -313,6 +312,25 @@ public class TicTacToeGame {
 			randomMove();
 		
 	}
+	
+	public static void newGame()
+    {
+    	System.out.println("Do you want to play again??\npress 0 to play again\npress 1 to exit");
+    	Scanner scanner = new Scanner(System.in);
+    	int choice = scanner.nextInt();
+    	if(choice == 0)
+    	{
+    		TicTacToeGame newTicTacToeGame = new TicTacToeGame();
+    		newTicTacToeGame.createBoard();
+    		newTicTacToeGame.selectLetter();
+    		newTicTacToeGame.toss();
+    		
+    	}
+    	else {
+    		System.exit(0);
+    	}
+    	
+    }
 
 
 }
