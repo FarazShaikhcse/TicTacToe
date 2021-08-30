@@ -30,7 +30,7 @@ public class TicTacToeGame {
 	public void createBoard() {
 		for(int i=1;i<board.length;i++)     
 		{
-			board[i]=' ';
+			board[i] = ' ';
 		}
 	}
 
@@ -281,11 +281,30 @@ public class TicTacToeGame {
 	 * This method inserts the computer's letter at random location
 	 */
 	private void computerPlay() {
+		int corner[]= {1,3,7,9};
+		Boolean flag = false;
+		for(int i=0;i<4;i++)
+		{
+			if(board[corner[i]]==' ')
+			{
+				board[corner[i]]= computerLetter;
+				flag = true;
+				break;
+			}
+		}
+		if(!flag)
+		{
+			randomMove();
+		}
+		
+	}
+
+	private void randomMove() {
 		int index = new Random().nextInt(9)+1;
-		if(board[index]==' ')
-			board[index]= computerLetter;
+		if(board[index] == ' ')
+			board[index]=  computerLetter;
 		else
-			computerPlay();
+			randomMove();
 		
 	}
 
