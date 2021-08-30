@@ -90,7 +90,7 @@ public class TicTacToeGame {
 			index = scanner.nextInt();
 			if(index > 9 || index < 0) {
 				System.out.println("Invalid index, Choose index between 1 to 9");
-				
+				userMove();
 			} 
 			String c = String.valueOf(board[index]);  
 			if( board[index]==' ') {
@@ -101,7 +101,9 @@ public class TicTacToeGame {
 			}
 			else {
 				System.out.println("Index is full and you cannot make move to that index"+index);
+				userMove();
 			}
+			displayWinner();
 	}
 	
 	/**
@@ -120,13 +122,11 @@ public class TicTacToeGame {
 		int toss_choice = random.nextInt(2);						
 		if(choice==toss_choice)
 		{
-			System.out.println("Its player's turn!!!");
-			usersTurn = true;
+			userMove();
 		}
 		else
 		{
-			System.out.println("Its computer's turn!!!");
-			usersTurn = false;
+			computersMove();
 		}
 		
 	}
@@ -201,14 +201,17 @@ public class TicTacToeGame {
         if(win == playerLetter)
         {
         	System.out.println("You have won the game");
+        	System.exit(0);
         }
         else if(win == computerLetter)
         {
         		System.out.println("Computer has won the game");
+        		System.exit(0);
         }
         else if(win == 'd')
         {
         	System.out.println("Game has been tie");
+        	System.exit(0);
         }
         else
         {
@@ -220,10 +223,13 @@ public class TicTacToeGame {
 
             }
         }    
-}
+    }
 
 	
 
+	/**
+	 * this method checks the moves which can make computer win
+	 */
 	public void computersMove() {
 		usersTurn = false;
 		System.out.println("Computer is playing!!!");	
@@ -271,6 +277,9 @@ public class TicTacToeGame {
 		
 	}
 
+	/**
+	 * This method inserts the computer's letter at random location
+	 */
 	private void computerPlay() {
 		int index = new Random().nextInt(9)+1;
 		if(board[index]==' ')
