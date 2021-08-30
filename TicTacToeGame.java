@@ -294,7 +294,7 @@ public class TicTacToeGame {
 				break;
 			}
 		}
-		if(!flag)
+		if(flag==false)
 		{	
 			if(board[5] == ' ') {
 				board[5] = computerLetter;
