@@ -81,7 +81,7 @@ public class TicTacToeGame {
 	 */
 	
 	public void userMove() {
-		
+		usersTurn = true;
 		int index;
 		Scanner scanner = new Scanner(System.in);
 		
@@ -103,6 +103,7 @@ public class TicTacToeGame {
 				System.out.println("Index is full and you cannot make move to that index"+index);
 				userMove();
 			}
+			displayBoard();
 			displayWinner();
 	}
 	
@@ -216,10 +217,10 @@ public class TicTacToeGame {
         else
         {
         	if (!usersTurn) {
-                computersMove();
+        		userMove();
             }
             else {
-            	userMove();
+            	computersMove();
 
             }
         }    
@@ -273,7 +274,8 @@ public class TicTacToeGame {
 			computerPlay();			
 		}
 		displayBoard();
-		userMove();
+		displayWinner();
+		
 		
 	}
 
@@ -293,8 +295,12 @@ public class TicTacToeGame {
 			}
 		}
 		if(!flag)
-		{
-			randomMove();
+		{	
+			if(board[5] == ' ') {
+				board[5] = computerLetter;
+			}
+			else
+				randomMove();
 		}
 		
 	}
