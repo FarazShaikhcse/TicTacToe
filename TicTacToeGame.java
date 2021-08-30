@@ -20,8 +20,6 @@ public class TicTacToeGame {
 		ticTacToeGame.createBoard();
 		ticTacToeGame.selectLetter();
 		ticTacToeGame.displayBoard();
-		ticTacToeGame.userMove();
-		ticTacToeGame.displayBoard();
 		ticTacToeGame.toss();
 		ticTacToeGame.displayWinner();
 	}
@@ -189,7 +187,7 @@ public class TicTacToeGame {
      	 if(i==9)
      		 return 'd';
      	 else
-     		return 'n';
+     		 return 'n';
     }
 	
 	
@@ -215,16 +213,72 @@ public class TicTacToeGame {
         else
         {
         	if (!usersTurn) {
-                usersTurn = false;
-            	System.out.println("computers turn to play");
+                computersMove();
             }
             else {
-            	usersTurn = true;
-            	System.out.println("Players turn to play");
+            	userMove();
 
             }
         }    
 }
+
+	
+
+	public void computersMove() {
+		usersTurn = false;
+		System.out.println("Computer is playing!!!");	
+		if((board[1] == ' ')&&(board[2] == board[3]&&board[2] == computerLetter)||(board[4] == board[7]&&board[4] == computerLetter)||(board[5] == board[9]&&board[5] == computerLetter))
+		{
+			board[1] = computerLetter;			
+		}
+		else if((board[2] == ' ')&&(board[1] == board[3] && board[3] == computerLetter)|| (board[5] == board[8] && board[8] == computerLetter))
+		{
+			board[2] = computerLetter;
+		}
+		else if((board[3] == ' ') && (board[1] == board[2] && board[2] == computerLetter)||(board[6] == board[9] && board[9] == computerLetter)||(board[5] == board[7] && board[7] == computerLetter))
+		{
+			board[3] = computerLetter;
+		}
+		else if((board[4] == ' ') && (board[1] == board[7]&&board[1] == computerLetter)||(board[5] == board[6] && board[6] == computerLetter))
+		{
+			board[4] = computerLetter;
+		}
+		else if((board[5] == ' ') && (board[1] == board[9]&&board[2] == computerLetter)||(board[7] == board[3] && board[7] == computerLetter)||(board[2] == board[8]&&board[8] == computerLetter)||(board[4] == board[6]&&board[6] == computerLetter))
+		{
+			board[5] = computerLetter;
+		}
+		else if((board[6] == ' ')&&(board[9] == board[3] && board[3] == computerLetter)||(board[5] == board[4] && board[4] == computerLetter))
+		{
+			board[6] = computerLetter;
+		}
+		else if((board[7] == ' ')&&(board[1] == board[4] && board[4] == computerLetter)||(board[3] == board[5]&&board[3] == computerLetter)||(board[8] == board[9] && board[8] == computerLetter))
+		{
+			board[3] = computerLetter;
+		}
+		else if((board[8] == ' ')&&(board[9] == board[7] && board[7] == computerLetter) || (board[2] == board[5] && board[2] == computerLetter))
+		{
+			board[8] = computerLetter;
+		}
+		else if((board[9] == ' ')&&(board[1] == board[5] && board[5] == computerLetter) || (board[6] == board[3] && board[3] == computerLetter)||(board[8] == board[7] && board[7] == computerLetter))
+		{
+			board[9] = computerLetter;
+		}
+	   	else {
+			computerPlay();			
+		}
+		displayBoard();
+		userMove();
+		
+	}
+
+	private void computerPlay() {
+		int index = new Random().nextInt(9)+1;
+		if(board[index]==' ')
+			board[index]= computerLetter;
+		else
+			computerPlay();
+		
+	}
 
 
 }
