@@ -23,6 +23,7 @@ public class TicTacToeGame {
 		ticTacToeGame.userMove();
 		ticTacToeGame.displayBoard();
 		ticTacToeGame.toss();
+		ticTacToeGame.displayWinner();
 	}
 
 	/**
@@ -131,6 +132,99 @@ public class TicTacToeGame {
 		}
 		
 	}
+	
+	/**
+	 * @return char that tells who has won the game
+	 */
+	public char checkWinnerExist()
+    {
+		String line = null;
+		
+		//to check if there is an winning situation
+		for (int s = 1; s < 9; s++) 
+        {
+			
+            switch (s) {
+            case 1:
+                line = ""+board[1] + board[2] + board[3];
+                break;
+            case 2:
+                line = ""+board[4] + board[5] + board[6];
+                break;
+            case 3:
+                line = ""+board[7] + board[8] + board[9];
+                break;
+            case 4:
+                line = ""+board[1] + board[4] + board[7];
+                break;
+            case 5:
+                line = ""+board[2] + board[5] + board[8];
+                break;
+            case 6:
+                line = ""+board[3] + board[5] + board[9];
+                break;
+            case 7:
+                line = ""+board[1] + board[5] + board[9];
+                break;
+            case 8:
+                line = ""+board[3] + board[5] + board[7];
+                break;
+            }
+            //winner is X
+            if (line.equals("XXX")) {
+                return 'X';
+            } 
+            // winner is O
+            else if (line.equals("OOO")) {
+                return 'O';
+            }
+         }
+		int i;
+        for(i=1;i<=9;i++) {
+        	if (board[i]==' ') 
+        	{
+        		break;
+        	}
+        }
+     	 if(i==9)
+     		 return 'd';
+     	 else
+     		return 'n';
+    }
+	
+	
+    /**
+     * This method displays the winning player or determines whether it is a tie.
+     */
+    public void displayWinner()
+    {
+    	
+       char win = checkWinnerExist();
+        if(win == playerLetter)
+        {
+        	System.out.println("You have won the game");
+        }
+        else if(win == computerLetter)
+        {
+        		System.out.println("Computer has won the game");
+        }
+        else if(win == 'd')
+        {
+        	System.out.println("Game has been tie");
+        }
+        else
+        {
+        	if (!usersTurn) {
+                usersTurn = false;
+            	System.out.println("computers turn to play");
+            }
+            else {
+            	usersTurn = true;
+            	System.out.println("Players turn to play");
+
+            }
+        }    
+}
 
 
 }
